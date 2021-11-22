@@ -1,7 +1,9 @@
-package com.trend.data.trend.domain;
+package com.trend.data.application.trend.domain;
 
 import lombok.Getter;
+import lombok.ToString;
 
+@ToString
 @Getter
 public class TrendModel {
     private Integer rank;

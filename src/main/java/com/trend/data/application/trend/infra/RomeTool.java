@@ -1,16 +1,13 @@
-package com.trend.data.trend.infra;
+package com.trend.data.application.trend.infra;
 
-import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
-import com.trend.data.trend.domain.TrendModel;
-import com.trend.data.trend.service.Rss;
+import com.trend.data.application.trend.domain.TrendModel;
+import com.trend.data.application.trend.service.Rss;
 import org.springframework.stereotype.Component;
-import org.yaml.snakeyaml.util.ArrayUtils;
 
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
