@@ -12,8 +12,14 @@ class TrendServiceTest {
     @Autowired
     TrendService trendService;
 
+
     @Test
-    void test() {
-        trendService.test();
+    void googleTrendRanking() {
+        //given
+
+        //when
+        trendService.googleTrendRanking();
+        //then
+
     }
 }

@@ -5,32 +5,54 @@ import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
 import com.trend.data.trend.domain.TrendModel;
-import com.trend.data.trend.service.FeedRss;
+import com.trend.data.trend.service.Rss;
 import org.springframework.stereotype.Component;
+import org.yaml.snakeyaml.util.ArrayUtils;
 
 import java.net.URL;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.*;
 
 @Component
-public class RomeTool implements FeedRss {
-    @Override
-    public List<TrendModel> googleTrendParser() {
-        try {
-            String url = "https://trends.google.co.kr/trends/trendingsearches/daily/rss?geo=KR";
+public class RomeTool implements Rss {
 
-            try (XmlReader reader = new XmlReader(new URL(url))) {
-                SyndFeed feed = new SyndFeedInput().build(reader);
-                System.out.println(feed.getTitle());
-                System.out.println("***********************************");
-                for (SyndEntry entry : feed.getEntries()) {
-                    System.out.println(entry);
-                    System.out.println("***********************************");
-                }
-                System.out.println("Done");
-            }
+    @Override
+    public List<TrendModel> reader(String url) {
+        try {
+            XmlReader reader = new XmlReader(new URL(url));
+            SyndFeed feed = new SyndFeedInput().build(reader);
+            return makeTrendModel(feed);
         }  catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return Collections.emptyList();
     }
+
+    private List<TrendModel> makeTrendModel(SyndFeed feed) {
+        List<TrendModel> trendModels = new ArrayList<>();
+        LocalDate now = LocalDate.now();
+
+        for (int i = 0; i < feed.getEntries().size(); i++) {
+            LocalDate feedDate = getDate(feed, i);
+            if(!now.equals(feedDate))
+                break;
+
+            TrendModel trendModel = new TrendModel(
+                    i+1,
+                    feed.getEntries().get(i).getTitle(),
+                    feed.getEntries().get(i).getDescription().getValue());
+            trendModels.add(trendModel);
+        }
+        return trendModels;
+    }
+
+    private LocalDate getDate(SyndFeed feed, int i) {
+        return feed.getEntries().get(i).getPublishedDate()
+                .toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+    }
+
 }

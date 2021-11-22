@@ -4,6 +4,6 @@ import com.trend.data.trend.domain.TrendModel;
 
 import java.util.List;
 
-public interface FeedRss {
-    List<TrendModel> googleTrendParser();
+public interface Rss {
+    List<TrendModel> reader(String url);
 }
