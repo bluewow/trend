@@ -26,6 +26,7 @@ public class RomeTool implements Rss {
             return makeTrendModel(feed);
         }  catch (Exception e) {
             e.printStackTrace();
+            //TODO log 처리
         }
         return Collections.emptyList();
     }
