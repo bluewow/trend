@@ -26,7 +26,7 @@ public class SchedulerService {
     /**
      * 매일 오후 5시 데이터를 수집한다
      */
-    @Scheduled(cron = "0 0 17 ? * * *")
+    @Scheduled(cron = "0 0 17 ? * *")
     @Async
     public void getDataTask() {
         List<TrendModel> trendModels = rss.reader(googleURL);
@@ -36,7 +36,7 @@ public class SchedulerService {
     /**
      * 매일 오후 6시 수집한 데이터를 토대로 메시지를 전달한다
      */
-    @Scheduled(fixedDelay = 1000)
+    @Scheduled(cron = "0 0 18 ? * *")
     @Async
     public void messagePushTask() {
         System.out.println(data.toString());
