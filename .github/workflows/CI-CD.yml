@@ -25,14 +25,22 @@ jobs:
       run: ./gradlew test
     - name: 빌드
       run: ./gradlew build
-    - run: ls -al
-    
+    - name: jar 파일 upload
+    - uses: actions/upload-artifact@v2.2.4
+      with:
+        name: jar-file
+        path: path/file
+        
   deploy:
     needs: [ build-test ]
     runs-on: ubuntu-latest
+    if: github.event_name == 'push'
     steps:
+    - name: jar 파일 download
+      uses: actions/download-artifact@v2.0.10
+      with:
+        name: jar-file
     - name: jar 파일 push to Release branch
-      if: github.event_name == 'push'
       run: ls -al
       
     
