@@ -29,7 +29,7 @@ jobs:
       uses: actions/upload-artifact@v2.2.4
       with:
         name: jar-file
-        path: ./
+        path: ./build/libs/*.jar
         
   deploy:
     needs: [ build-test ]
