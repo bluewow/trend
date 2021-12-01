@@ -21,15 +21,15 @@ jobs:
         distribution: 'adopt'
     - name: gradlew 권한 변경
       run: chmod +x gradlew
-    - name: 테스트
-      run: ./gradlew test
     - name: 빌드
       run: ./gradlew build
+    - name: 테스트
+      run: ./gradlew test
     - name: jar 파일 upload
       uses: actions/upload-artifact@v2.2.4
       with:
         name: jar-file
-        path: ./build/libs/*.jar
+        path: ./build/libs/*Release.jar
         
   deploy:
     needs: [ build-test ]
