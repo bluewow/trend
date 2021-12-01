@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.trend'
-version = '0.0.1-Release'
+version = '0.0.1-release'
 sourceCompatibility = '11'
 
 configurations {
