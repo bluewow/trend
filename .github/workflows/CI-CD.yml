@@ -26,6 +26,7 @@ jobs:
         ./gradlew test
         ./gradlew build
   deploy:
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
     - name: jar 파일 push to Release branch
