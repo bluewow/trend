@@ -25,4 +25,12 @@ jobs:
       run: |
         ./gradlew test
         ./gradlew build
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: jar 파일 push to Release branch
+      if: github.event_name == 'push'
+      run: ls -al
+      
+    
         
