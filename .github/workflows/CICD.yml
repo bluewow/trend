@@ -45,6 +45,7 @@ jobs:
       env:
         REPO: self
         BRANCH: release
+        FOLDER: build/libs
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
         
