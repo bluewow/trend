@@ -50,7 +50,7 @@ jobs:
         REPO: self
         BRANCH: release
         FOLDER: ./
-        MESSAGE: ${{ name }}
+        MESSAGE: ${name}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
         
