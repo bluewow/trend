@@ -47,16 +47,12 @@ jobs:
       with:
         name: jar-file
         
-    - name: 파일명 저장&변경
-      run: mv *.jar release.jar
-      
     - name: jar 파일 push to Release branch
       uses: s0/git-publish-subdir-action@develop
       env:
         REPO: self
         BRANCH: release
         FOLDER: ./
-        MESSAGE: "Release: ({sha}) {msg}"
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
         
