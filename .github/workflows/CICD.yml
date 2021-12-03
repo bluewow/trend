@@ -4,6 +4,8 @@
 name: 빌드 & 테스트
 
 on:
+  push:
+    branches: [ master ]
   pull_request:
     branches: [ develop ]
 
