@@ -4,8 +4,8 @@
 name: 빌드 & 테스트
 
 on:
-  push:
-    branches: [ master ]
+#   push:
+#     branches: [ master ]
   pull_request:
     branches: [ develop ]
 
@@ -40,7 +40,7 @@ jobs:
     needs: [ build-test ]
     runs-on: ubuntu-latest
     
-#     if: github.event_name == 'push'
+    if: github.event_name == 'push'
     steps:
     - name: jar 파일 download
       uses: actions/download-artifact@v2.0.10
