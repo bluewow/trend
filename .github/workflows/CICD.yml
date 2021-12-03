@@ -55,4 +55,18 @@ jobs:
         FOLDER: ./
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
+  deploy:
+    needs: [ delivery ]
+    runs-on: ubuntu-latest
+     
+    steps:
+    - name: Google Cloud Platform (GCP) CLI - gcloud
+      uses: actions-hub/gcloud@master
+      env:
+        PROJECT_ID: ${{ secrets.GCP_PROJECT }}
+        APPLICATION_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
+      with:
+        args: ls -al
+    
+    
         
